@@ -1,22 +1,73 @@
+const categories = [
+  {
+    label: "Фотография",
+    tag: "Photo",
+    description:
+      "Живые моменты, пойманные в кадр. Портреты, репортажи, пейзажи — каждый снимок рассказывает свою историю.",
+    image: "/images/mountain-landscape.jpg",
+    alt: "Пример фотографии",
+  },
+  {
+    label: "Видео",
+    tag: "Video",
+    description:
+      "Динамичные ролики и короткий метр. От съёмки до монтажа — создаю видео, которые хочется смотреть до конца.",
+    image: "/images/exterior.png",
+    alt: "Пример видео",
+  },
+  {
+    label: "Тексты",
+    tag: "Text",
+    description:
+      "Статьи, сценарии, посты. Пишу ясно и по делу — так, чтобы читатель не отрывался от экрана.",
+    image: "/images/desk.png",
+    alt: "Пример текста",
+  },
+];
+
 export default function Featured() {
   return (
-    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0 bg-white">
-      <div className="flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2">
-        <img
-          src="/images/woman-horse.jpg"
-          alt="Woman on horse in countryside"
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="flex-1 text-left lg:h-[800px] flex flex-col justify-center lg:mr-12 lg:order-1">
-        <h3 className="uppercase mb-4 text-sm tracking-wide text-neutral-600">Функции, которые не стоят на месте</h3>
-        <p className="text-2xl lg:text-4xl mb-8 text-neutral-900 leading-tight">
-          Не просто список возможностей — живые, дышащие акценты. Каждая функция адаптируется к движению, контексту и настроению,
-          оживляя продукт с первого взгляда.
+    <div id="works" className="bg-white py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="uppercase text-sm tracking-widest text-neutral-500 mb-4">
+          Примеры работ
+        </h2>
+        <p className="text-3xl lg:text-5xl font-bold text-neutral-900 mb-16 leading-tight max-w-2xl">
+          Фото, видео и тексты — в одном месте
         </p>
-        <button className="bg-black text-white border border-black px-4 py-2 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit uppercase tracking-wide">
-          Подробнее
-        </button>
+
+        <div className="flex flex-col gap-24">
+          {categories.map((item, i) => (
+            <div
+              key={item.tag}
+              className={`flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16 ${
+                i % 2 === 1 ? "lg:flex-row-reverse" : ""
+              }`}
+            >
+              <div className="flex-1 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  className="w-full h-[320px] lg:h-[480px] object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+              <div className="flex-1 flex flex-col justify-center">
+                <span className="uppercase text-xs tracking-widest text-neutral-400 mb-3">
+                  {item.tag}
+                </span>
+                <h3 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-5">
+                  {item.label}
+                </h3>
+                <p className="text-neutral-600 text-lg leading-relaxed mb-8">
+                  {item.description}
+                </p>
+                <button className="bg-black text-white border border-black px-5 py-2.5 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit uppercase tracking-wide">
+                  Смотреть работы
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
